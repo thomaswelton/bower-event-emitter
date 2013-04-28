@@ -1,5 +1,5 @@
 {
-  "name": "bower-event-emitter",
+  "name": "EventEmitter",
   "version": "0.0.0",
   "main": "EventEmitter.js",
   "ignore": [
