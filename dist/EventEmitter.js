@@ -1,7 +1,85 @@
-/*!
-bower-event-emitter v0.0.0 
-Event-Emitter
-Build time: 1367188577097
+/*! https://gist.github.com/Contra/2759355
 */
 
-(function(){var __slice=[].slice;define([],function(){var EventEmitter;return EventEmitter=function(){function EventEmitter(){this.events={}}return EventEmitter.prototype.fireEvent=function(){var args,event,listener,_i,_len,_ref;if(event=arguments[0],args=arguments.length>=2?__slice.call(arguments,1):[],!this.events[event])return!1;for(_ref=this.events[event],_i=0,_len=_ref.length;_len>_i;_i++)listener=_ref[_i],listener.apply(null,args);return!0},EventEmitter.prototype.addEvent=function(event,listener){var _base,_ref;return this.fireEvent("newListener",event,listener),(null!=(_ref=(_base=this.events)[event])?_ref:_base[event]=[]).push(listener),this},EventEmitter.prototype.on=EventEmitter.prototype.addEvent,EventEmitter.prototype.once=function(event,listener){var fn,_this=this;return fn=function(){return _this.removeListener(event,fn),listener.apply(null,arguments)},this.on(event,fn),this},EventEmitter.prototype.removeListener=function(event,listener){var l;return this.events[event]?(this.events[event]=function(){var _i,_len,_ref,_results;for(_ref=this.events[event],_results=[],_i=0,_len=_ref.length;_len>_i;_i++)l=_ref[_i],l!==listener&&_results.push(l);return _results}.call(this),this):this},EventEmitter.prototype.removeAllListeners=function(event){return delete this.events[event],this},EventEmitter}()})}).call(this);
+
+(function() {
+  var __slice = [].slice;
+
+  define([], function() {
+    var EventEmitter;
+
+    return EventEmitter = (function() {
+      function EventEmitter() {
+        this.events = {};
+      }
+
+      EventEmitter.prototype.fireEvent = function() {
+        var args, event, listener, _i, _len, _ref;
+
+        event = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+        if (!this.events[event]) {
+          return false;
+        }
+        _ref = this.events[event];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          listener = _ref[_i];
+          listener.apply(null, args);
+        }
+        return true;
+      };
+
+      EventEmitter.prototype.addEvent = function(event, listener) {
+        var _base, _ref;
+
+        this.fireEvent('newListener', event, listener);
+        ((_ref = (_base = this.events)[event]) != null ? _ref : _base[event] = []).push(listener);
+        return this;
+      };
+
+      EventEmitter.prototype.on = EventEmitter.prototype.addEvent;
+
+      EventEmitter.prototype.once = function(event, listener) {
+        var fn,
+          _this = this;
+
+        fn = function() {
+          _this.removeListener(event, fn);
+          return listener.apply(null, arguments);
+        };
+        this.on(event, fn);
+        return this;
+      };
+
+      EventEmitter.prototype.removeListener = function(event, listener) {
+        var l;
+
+        if (!this.events[event]) {
+          return this;
+        }
+        this.events[event] = (function() {
+          var _i, _len, _ref, _results;
+
+          _ref = this.events[event];
+          _results = [];
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            l = _ref[_i];
+            if (l !== listener) {
+              _results.push(l);
+            }
+          }
+          return _results;
+        }).call(this);
+        return this;
+      };
+
+      EventEmitter.prototype.removeAllListeners = function(event) {
+        delete this.events[event];
+        return this;
+      };
+
+      return EventEmitter;
+
+    })();
+  });
+
+}).call(this);

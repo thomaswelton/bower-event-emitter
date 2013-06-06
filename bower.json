@@ -1,10 +1,10 @@
 {
-  "name": "EventEmitter",
-  "version": "0.0.0",
-  "main": "dist/EventEmitter.js",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "components"
+    "name": "EventEmitter"
+  , "version": "0.0.0"
+  , "main": "dist/EventEmitter.js"
+  , "ignore": [
+      "**/.*"
+    , "node_modules"
+    , "components"
   ]
 }
