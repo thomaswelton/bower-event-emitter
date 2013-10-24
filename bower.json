@@ -1,5 +1,5 @@
 {
-    "name": "EventEmitter"
+    "name": "event-emitter"
   , "version": "0.0.1"
   , "main": "dist/EventEmitter.js"
   , "ignore": [
